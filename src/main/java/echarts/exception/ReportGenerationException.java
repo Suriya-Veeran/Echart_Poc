@@ -1,0 +1,11 @@
+package echarts.exception;
+
+/**
+ * for throw the exception while perform report process
+ */
+
+public class ReportGenerationException extends Exception{
+    public ReportGenerationException(String message) {
+        super(message);
+    }
+}
