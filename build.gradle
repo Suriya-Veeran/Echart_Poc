@@ -25,6 +25,8 @@ dependencies {
     implementation 'org.seleniumhq.selenium:htmlunit-driver:2.60.0'
 
     implementation group: 'org.yaml', name: 'snakeyaml', version: '2.3'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2'
+
 }
 
 test {
