@@ -1,0 +1,99 @@
+chartBasicInfo:
+  language: "en"
+  charSet: "UTF-8"
+  title: "Referer of a Website"
+  chartWidth: "600px"
+  chartHeight: "400px"
+  chartType: "pie"
+
+titleInfoBean:
+  text: "Sample Data"
+  subText: ""
+  left: "center"
+  bottom: ""
+  top: ""
+  textStyle:
+    fontSize: 16
+    fontFamily: "Arial"
+    fontWeight: "bold"
+    color: "#333"
+  subTextStyle:
+    fontSize: 12
+    fontFamily: "Arial"
+    fontWeight: "normal"
+    color: "#666"
+
+toolTipInfoBean:
+  trigger: "item"
+  axisPointer:
+    type: "line"
+  formatter: "{b}: {c}"
+  backgroundColor: "#fff"
+  borderColor: "#ccc"
+  borderWidth: 1
+  padding: [ 10, 15, 10, 15 ]
+  textStyle:
+    fontSize: 12
+    fontFamily: "Arial"
+    fontWeight: "normal"
+    color: "#000"
+  extraCssText: "font-size: 14px;"
+
+legendInfoBean:
+  orient: "vertical"
+  left: "center"
+  bottom: "bottom"
+  textStyle:
+    fontSize: 14
+    fontFamily: "Arial"
+    fontWeight: "normal"
+    color: "#000"
+  data:
+    - "Search Engine"
+    - "Direct"
+    - "Email"
+    - "Union Ads"
+    - "Video Ads"
+
+seriesInfoBean:
+  name: "Access From"
+  type: "pie"
+  data:
+    - name: "Search Engine"
+      value: 1200
+      itemStyle:
+        color: "#ff0000"
+    - name: "Direct"
+      value: 950
+      itemStyle:
+        color: "#00ff00"
+    - name: "Email"
+      value: 800
+      itemStyle:
+        color: "#0000ff"
+    - name: "Union Ads"
+      value: 600
+      itemStyle:
+        color: "#ffff00"
+    - name: "Video Ads"
+      value: 400
+      itemStyle:
+        color: "#00ffff"
+  label:
+    show: true
+    position: "outside"
+    formatter: "{b}: {c}"
+    fontSize: 12
+    color: "#000"
+    fontWeight: "bold"
+    fontFamily: "Arial"
+    align: "center"
+    verticalAlign: "middle"
+    backgroundColor: "#fff"
+    padding: [ 5, 10 ]
+    shadowColor: "rgba(0, 0, 0, 0.5)"
+    shadowBlur: 10
+    shadowOffsetX: 0
+    shadowOffsetY: 0
+  radius: ["50%"]
+
