@@ -1,4 +1,4 @@
-package echarts.utils.yamlUtils;
+package echarts.utils.yaml;
 
 import echarts.exception.ReportGenerationException;
 import java.io.InputStream;

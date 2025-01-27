@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,32 +21,32 @@ public class HeadlessScreenshot {
                                       String outputPath,
                                       String browserType) {
 
-        WebDriver driver = WebDriverConfig.createDriver(browserType);  // Use WebDriverConfig to get the appropriate driver
+        Path destination = Paths.get(outputPath);
+        WebDriver driver = WebDriverConfig.createDriver(browserType);
         File screenshotFile = null;
 
         try {
             driver.get(url);
-
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
-
-            // Scroll to the bottom of the page
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-            // Wait for page to load fully
             Thread.sleep(2000);
 
-            // Take the screenshot
             screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-            // Define the destination path
-            Path destination = Paths.get(outputPath);
+            if (Files.exists(Path.of("src/main/resources/snapFiles" + File.separator + destination))) {
+                Files.delete(destination); // Delete the existing file
+            }
             Files.copy(screenshotFile.toPath(), Path.of("src/main/resources/snapFiles" + File.separator + destination));
 
-        } catch (Exception e) {
+        } catch (IOException  e) {
             throw new IllegalArgumentException("Error while taking screenshot: " + e.getMessage());
-        } finally {
+        }catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Thread was interrupted while taking a screenshot", e);
+        }
+        finally {
             driver.quit();
         }
 

@@ -14,7 +14,6 @@ public class ChartConfigBuilder {
     public static ChartConfig buildChart(ChartRequest chartRequest) {
         return ChartConfig.builder()
                 .title(chartRequest.getTitle())
-                .subtitle(chartRequest.getSubtitle())
                 .type(chartRequest.getChartType())
                 .legend(createLegend(chartRequest.getLegendPosition()))
                 .series(createChartSeries(chartRequest))

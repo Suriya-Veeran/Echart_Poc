@@ -18,4 +18,5 @@ public class ChartRequest {
     private List<String> customColors;
     private String legendPosition;
     private String labelPosition;
+    private String titlePosition;
 }

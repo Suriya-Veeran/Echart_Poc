@@ -1,4 +1,4 @@
-package echarts.utils.yamlUtils;
+package echarts.utils.yaml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -25,19 +25,16 @@ public class YamlFileWriter {
     public static void writeYamlToFile(ChartConfig chartConfig,
                                        String folderPath,
                                        String fileName) throws IOException {
-        // Create an ObjectMapper with YAMLFactory to handle YAML serialization
+
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
-        // Ensure that the folder exists or create it
         File folder = new File(folderPath);
         if (!folder.exists()) {
-            folder.mkdirs();  // Create the folder if it doesn't exist
+            folder.mkdirs();
         }
 
-        // Create the YAML file
         File yamlFile = new File(folderPath + File.separator + fileName);
 
-        // Write the ChartConfig object to the YAML file
         objectMapper.writeValue(yamlFile, chartConfig);
 
         log.info("YAML file written to {}", yamlFile.getAbsolutePath());
