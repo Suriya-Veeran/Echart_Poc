@@ -23,7 +23,9 @@ import static apache_echarts.constants.SpecialCharacterConstants.HYPHEN;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HeadlessScreenshot {
 
-  public static void takeScreenshot(String url, String browserType, String chartType) {
+  public static void takeScreenshot(String url,
+                                    String browserType,
+                                    String chartType) {
 
     File screenshotFile;
     WebDriver driver = WebDriverConfig.getInstance(browserType);

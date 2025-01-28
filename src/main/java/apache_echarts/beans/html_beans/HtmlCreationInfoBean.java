@@ -14,6 +14,8 @@ public class HtmlCreationInfoBean {
     private TitleInfoBean titleInfoBean;
     private ToolTipInfoBean toolTipInfoBean;
     private LegendInfoBean legendInfoBean;
+    private AxisInfoBean xaxisInfoBean;
+    private AxisInfoBean yaxisInfoBean;
     private SeriesInfoBean seriesInfoBean;
 
 

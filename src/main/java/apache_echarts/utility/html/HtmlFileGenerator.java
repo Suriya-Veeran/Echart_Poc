@@ -18,18 +18,18 @@ import static apache_echarts.constants.PathConstants.HTML_FILES;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HtmlFileGenerator {
   public static File generateHtml(HtmlCreationInfoBean htmlCreationInfoBean) {
-    // Accessing data from HtmlCreationInfoBean
+
     ChartBasicInfo chartBasicInfo = htmlCreationInfoBean.getChartBasicInfo();
     TitleInfoBean titleInfoBean = htmlCreationInfoBean.getTitleInfoBean();
     ToolTipInfoBean toolTipInfoBean = htmlCreationInfoBean.getToolTipInfoBean();
     LegendInfoBean legendInfoBean = htmlCreationInfoBean.getLegendInfoBean();
     SeriesInfoBean seriesInfoBean = htmlCreationInfoBean.getSeriesInfoBean();
+    AxisInfoBean xAxisInfoBean = htmlCreationInfoBean.getXaxisInfoBean();
+    AxisInfoBean yAxisInfoBean = htmlCreationInfoBean.getYaxisInfoBean();
 
-    // Language and Charset from the configuration
     String language = chartBasicInfo.getLanguage();
     String charSet = chartBasicInfo.getCharSet();
 
-    // Generating HTML content dynamically based on chart type
     StringBuilder htmlContent = new StringBuilder();
     htmlContent
         .append("<!DOCTYPE html>\n")
@@ -83,12 +83,11 @@ public class HtmlFileGenerator {
     String chartType = chartBasicInfo.getChartType();
     htmlContent.append(
         generateJavaScript(
-            chartType, titleInfoBean, toolTipInfoBean, legendInfoBean, seriesInfoBean));
+            chartType, titleInfoBean, toolTipInfoBean, legendInfoBean, seriesInfoBean, xAxisInfoBean, yAxisInfoBean));
 
     htmlContent.append("</script></body></html>");
 
     File outputFile = new File(HTML_FILES + File.separator + GENERATED_CHART);
-    // Write the generated HTML content to a file
     try (FileWriter writer =
         new FileWriter(outputFile)) {
       writer.write(htmlContent.toString());
@@ -104,7 +103,9 @@ public class HtmlFileGenerator {
       TitleInfoBean titleInfoBean,
       ToolTipInfoBean toolTipInfoBean,
       LegendInfoBean legendInfoBean,
-      SeriesInfoBean seriesInfoBean) {
+      SeriesInfoBean seriesInfoBean,
+      AxisInfoBean xaxisInfoBean,
+      AxisInfoBean yaxisInfoBean) {
     StringBuilder jsContent = new StringBuilder();
     jsContent
         .append("    var chart = echarts.init(document.getElementById('chart'));\n")
@@ -129,13 +130,13 @@ public class HtmlFileGenerator {
         .append(FONT_SIZE)
         .append(titleInfoBean.getTextStyle().getFontSize())
         .append(",\n")
-        .append("                fontFamily: '")
+        .append(FONT_FAMILY_WITH_SPACE)
         .append(titleInfoBean.getTextStyle().getFontFamily())
         .append("',\n")
-        .append("                fontWeight: '")
+        .append(FONT_WEIGHT_WITH_SPACE)
         .append(titleInfoBean.getTextStyle().getFontWeight())
         .append("',\n")
-        .append("                color: '")
+        .append(COLOR_WITH_SPACE)
         .append(titleInfoBean.getTextStyle().getColor())
         .append("'\n")
         .append(NEXT_LINE_WITH_SPACE)
@@ -177,7 +178,7 @@ public class HtmlFileGenerator {
     } else if (chartType.equalsIgnoreCase("doughnut")) {
       jsContent.append(generatePieChart(seriesInfoBean, true)); // Doughnut chart with inner radius
     } else if (chartType.equalsIgnoreCase("bar")) {
-      jsContent.append(generateBarChart(seriesInfoBean));
+      jsContent.append(generateBarChart(seriesInfoBean, xaxisInfoBean, yaxisInfoBean));
     }
     else {
       throw new IllegalArgumentException("Unsupported chart type: " + chartType);
@@ -188,8 +189,62 @@ public class HtmlFileGenerator {
     return jsContent.toString();
   }
 
-  private static String generateBarChart(SeriesInfoBean seriesInfoBean) {
+  private static String generateBarChart(SeriesInfoBean seriesInfoBean,
+                                         AxisInfoBean xaxisInfoBean,
+                                         AxisInfoBean yaxisInfoBean) {
     StringBuilder barChartData = new StringBuilder();
+
+    // Add xAxis configuration
+    barChartData.append("        xAxis: {")
+            .append("            type: '")
+            .append(xaxisInfoBean.getType())
+            .append("',\n")
+            .append("            data: [");
+
+    // Add xAxis data
+    for (String data : xaxisInfoBean.getData()) {
+      barChartData.append("'").append(data).append("', ");
+    }
+    barChartData.delete(barChartData.length() - 2, barChartData.length()); // Remove trailing comma
+    barChartData.append("],\n")
+            .append("            axisLabel: {")
+            .append("                fontSize: ")
+            .append(xaxisInfoBean.getTextStyle().getFontSize())
+            .append(",\n")
+            .append(FONT_FAMILY_WITH_SPACE)
+            .append(xaxisInfoBean.getTextStyle().getFontFamily())
+            .append("',\n")
+            .append(FONT_WEIGHT_WITH_SPACE)
+            .append(xaxisInfoBean.getTextStyle().getFontWeight())
+            .append("',\n")
+            .append(COLOR_WITH_SPACE)
+            .append(xaxisInfoBean.getTextStyle().getColor())
+            .append("'\n")
+            .append("            }\n")
+            .append("        },\n");
+
+    // Add yAxis configuration
+    barChartData.append("        yAxis: {")
+            .append("            type: '")
+            .append(yaxisInfoBean.getType())
+            .append("',\n")
+            .append("            axisLabel: {")
+            .append("                fontSize: ")
+            .append(yaxisInfoBean.getTextStyle().getFontSize())
+            .append(",\n")
+            .append(FONT_FAMILY_WITH_SPACE)
+            .append(yaxisInfoBean.getTextStyle().getFontFamily())
+            .append("',\n")
+            .append(FONT_WEIGHT_WITH_SPACE)
+            .append(yaxisInfoBean.getTextStyle().getFontWeight())
+            .append("',\n")
+            .append(COLOR_WITH_SPACE)
+            .append(yaxisInfoBean.getTextStyle().getColor())
+            .append("'\n")
+            .append("            }\n")
+            .append("        },\n");
+
+    // Add series configuration
     barChartData
         .append("        series: [{\n")
         .append("            name: '")
