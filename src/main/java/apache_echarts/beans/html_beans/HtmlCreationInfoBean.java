@@ -10,13 +10,26 @@ import lombok.*;
 @AllArgsConstructor
 public class HtmlCreationInfoBean {
 
-    private ChartBasicInfo chartBasicInfo;
-    private TitleInfoBean titleInfoBean;
-    private ToolTipInfoBean toolTipInfoBean;
-    private LegendInfoBean legendInfoBean;
-    private AxisInfoBean xaxisInfoBean;
-    private AxisInfoBean yaxisInfoBean;
-    private SeriesInfoBean seriesInfoBean;
+    @Builder.Default
+    private ChartBasicInfo chartBasicInfo = new ChartBasicInfo(); // Basic information about the chart (e.g., language, charset)
+
+    @Builder.Default
+    private TitleInfoBean titleInfoBean = new TitleInfoBean(); // Information for the chart title
+
+    @Builder.Default
+    private ToolTipInfoBean toolTipInfoBean = new ToolTipInfoBean(); // Tooltip configuration
+
+    @Builder.Default
+    private LegendInfoBean legendInfoBean = new LegendInfoBean(); // Legend information
+
+    @Builder.Default
+    private AxisInfoBean xaxisInfoBean = new AxisInfoBean(); // X-axis configuration
+
+    @Builder.Default
+    private AxisInfoBean yaxisInfoBean = new AxisInfoBean(); // Y-axis configuration
+
+    @Builder.Default
+    private SeriesInfoBean seriesInfoBean = new SeriesInfoBean(); // Series data for the chart
 
 
 }

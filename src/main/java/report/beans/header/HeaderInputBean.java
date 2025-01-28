@@ -9,9 +9,12 @@ import lombok.*;
 @AllArgsConstructor
 public class HeaderInputBean {
 
-  private HeaderTitleInputBean headerTitleInputBean;
+  @Builder.Default
+  private HeaderTitleInputBean headerTitleInputBean  = new HeaderTitleInputBean();
 
-  private LogoInputBean logoInputBean;
+  @Builder.Default
+  private LogoInputBean logoInputBean  = new LogoInputBean();
 
-  private HeaderAdditionalInputBean headerAdditionalInputBean;
+  @Builder.Default
+  private HeaderAdditionalInputBean headerAdditionalInputBean = new HeaderAdditionalInputBean();
 }

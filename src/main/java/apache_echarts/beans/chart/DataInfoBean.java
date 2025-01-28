@@ -9,7 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DataInfoBean {
-    private String name;
-    private int value;
-    private ItemStyle itemStyle;
+    @Builder.Default
+    private String name = "Default";
+    @Builder.Default
+    private int value = 0;
+    @Builder.Default
+    private ItemStyle itemStyle = new ItemStyle();
 }

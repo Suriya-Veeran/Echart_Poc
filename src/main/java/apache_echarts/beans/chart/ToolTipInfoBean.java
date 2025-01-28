@@ -11,14 +11,31 @@ import java.util.List;
 @AllArgsConstructor
 public class ToolTipInfoBean {
 
-    private String trigger; // 'item' or 'axis'
-    private AxisPointerBean axisPointer; // Configuration for axis pointer (if trigger is 'axis')
-    private String formatter; // Tooltip format string  Format of the tooltip (e.g., '{b}: {c} ({d}%)')
-    private String backgroundColor; // Background color of the tooltip
-    private String borderColor; // Border color of the tooltip
-    private int borderWidth; // Border width
-    private List<Integer> padding; // Padding for the tooltip
-    private TextStyleBean textStyle; // Text style for the tooltip
-    private String extraCssText; // Extra CSS styling
+    @Builder.Default
+    private String trigger = "item"; // 'item' or 'axis'
+
+    @Builder.Default
+    private AxisPointerBean axisPointer = new AxisPointerBean(); // Configuration for axis pointer (if trigger is 'axis')
+
+    @Builder.Default
+    private String formatter = "{b}: {c} ({d}%)"; // Tooltip format string  Format of the tooltip (e.g., '{b}: {c} ({d}%)')
+
+    @Builder.Default
+    private String backgroundColor = "#FFFFFF"; // Background color of the tooltip
+
+    @Builder.Default
+    private String borderColor = "#000000"; // Border color of the tooltip
+
+    @Builder.Default
+    private int borderWidth = 1; // Border width
+
+    @Builder.Default
+    private List<Integer> padding = List.of(5, 5, 5, 5); // Padding for the tooltip
+
+    @Builder.Default
+    private TextStyleBean textStyle = new TextStyleBean(); // Text style for the tooltip
+
+    @Builder.Default
+    private String extraCssText = ""; // Extra CSS styling
 
 }

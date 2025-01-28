@@ -12,13 +12,30 @@ import report.enums.FontType;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HeaderTitleInputBean {
-  private String content; // Text content for the header
-  private TextAlignment textAlignment; // Text alignment for header content
-  private float rightMargin; // Margin for the right side
-  private float topMargin; // Margin for the top
-  private float leftMargin; // Margin for the left
-  private String backgroundColor; // Background color of the header
-  private int fontSize; // Font size for header content
-  private VerticalAlignment verticalAlignment; // Vertical alignment of header content
-  private FontType font; // Enum FontType for font type
+  @Builder.Default
+  private String content = ""; // Text content for the header
+
+  @Builder.Default
+  private TextAlignment textAlignment = TextAlignment.LEFT; // Text alignment for header content
+
+  @Builder.Default
+  private float rightMargin = 0.0f; // Margin for the right side
+
+  @Builder.Default
+  private float topMargin = 0.0f; // Margin for the top
+
+  @Builder.Default
+  private float leftMargin = 0.0f; // Margin for the left
+
+  @Builder.Default
+  private String backgroundColor = "#FFFFFF"; // Background color of the header
+
+  @Builder.Default
+  private int fontSize = 12; // Font size for header content
+
+  @Builder.Default
+  private VerticalAlignment verticalAlignment = VerticalAlignment.TOP; // Vertical alignment of header content
+
+  @Builder.Default
+  private FontType font = FontType.HELVETICA_BOLD; // Enum FontType for font type
 }

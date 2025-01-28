@@ -2,6 +2,7 @@ package apache_echarts.beans.chart;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -10,7 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AxisInfoBean {
-    private String type;
-    private List<String> data; // Only for x-axis
-    private TextStyleBean textStyle;
+    @Builder.Default
+    private String type = "category";
+    @Builder.Default
+    private List<String> data = new ArrayList<>(); // Only for x-axis
+    @Builder.Default
+    private TextStyleBean textStyle = new TextStyleBean();
 }

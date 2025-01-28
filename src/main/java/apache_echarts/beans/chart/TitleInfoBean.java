@@ -9,13 +9,26 @@ import lombok.*;
 @AllArgsConstructor
 public class TitleInfoBean {
 
-    private String text;  // title
-    private String subText; // subTitle
-    private String left;   // left values -> center , right , top , ''
-    private String bottom; // bottom values -> bottom , center , right , top , ''
-    private String top; // adjust the position of the text
-    private TextStyleBean textStyle;
-    private TextStyleBean subTextStyle;
+    @Builder.Default
+    private String text = "";  // title
+
+    @Builder.Default
+    private String subText = ""; // subTitle
+
+    @Builder.Default
+    private String left = "";   // left values -> center, right, top, ''
+
+    @Builder.Default
+    private String bottom = ""; // bottom values -> bottom, center, right, top, ''
+
+    @Builder.Default
+    private String top = ""; // adjust the position of the text
+
+    @Builder.Default
+    private TextStyleBean textStyle = new TextStyleBean();  // Text style for title
+
+    @Builder.Default
+    private TextStyleBean subTextStyle = new TextStyleBean();  // Text style for subtitle
 
 
 }

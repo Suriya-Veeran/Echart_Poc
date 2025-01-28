@@ -10,12 +10,27 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogoInputBean {
-    private boolean logoNeeded;  // If logo is needed
-    private String imagePath;  // Path to the logo image
-    private float fitWidth;  // Logo fit width
-    private float fitHeight;  // Logo fit height
-    private float logoWidth;  // Width of the logo
-    private float logoHeight;  // Height of the logo
-    private TextAlignment logoTextAlignment;  // Logo text alignment
-    private VerticalAlignment logoVerticalAlignment;  // Logo vertical alignment
+    @Builder.Default
+    private boolean logoNeeded = false; // If logo is needed
+
+    @Builder.Default
+    private String imagePath = ""; // Path to the logo image
+
+    @Builder.Default
+    private float fitWidth = 0.0f; // Logo fit width
+
+    @Builder.Default
+    private float fitHeight = 0.0f; // Logo fit height
+
+    @Builder.Default
+    private float logoWidth = 0.0f; // Width of the logo
+
+    @Builder.Default
+    private float logoHeight = 0.0f; // Height of the logo
+
+    @Builder.Default
+    private TextAlignment logoTextAlignment = TextAlignment.LEFT; // Logo text alignment
+
+    @Builder.Default
+    private VerticalAlignment logoVerticalAlignment = VerticalAlignment.TOP; // Logo vertical alignment
 }

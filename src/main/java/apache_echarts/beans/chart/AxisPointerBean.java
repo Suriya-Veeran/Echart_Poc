@@ -9,5 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AxisPointerBean {
-    private String type; // 'line', 'shadow', 'cross'
+    @Builder.Default
+    private String type = "line"; // 'line', 'shadow', 'cross'
 }
