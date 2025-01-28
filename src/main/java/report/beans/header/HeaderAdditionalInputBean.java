@@ -3,7 +3,6 @@ package report.beans.header;
 import com.itextpdf.layout.properties.TextAlignment;
 import lombok.*;
 
-import java.awt.*;
 
 @Getter
 @Setter
