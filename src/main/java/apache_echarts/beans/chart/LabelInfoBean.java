@@ -18,8 +18,7 @@ public class LabelInfoBean {
     @Builder.Default
     private int fontSize = 12; // Font size of the label
     @Builder.Default
-    private String formatter = "{b}: {c} ({d}%)";
-    ; // Text format for the label (e.g., "{b}: {c} ({d}%)")
+    private String formatter = "{b}: {c} ({d}%)"; // Text format for the label (e.g., "{b}: {c} ({d}%)")
 
     // New Properties
     @Builder.Default
