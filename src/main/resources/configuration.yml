@@ -2,7 +2,7 @@ chartBasicInfo:
   language: "en"
   charSet: "UTF-8"
   title: "Referer of a Website"
-  chartWidth: "600px"
+  chartWidth: "500px"
   chartHeight: "400px"
   chartType: "pie"
 

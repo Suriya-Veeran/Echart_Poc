@@ -1,6 +1,9 @@
 package apache_echarts.utility.screenshot_utils;
 
 import apache_echarts.utility.webdriver.WebDriverConfig;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.layout.element.Image;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.openqa.selenium.*;
@@ -23,11 +26,10 @@ import static apache_echarts.constants.SpecialCharacterConstants.HYPHEN;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HeadlessScreenshot {
 
-  public static void takeScreenshot(String url,
-                                    String browserType,
-                                    String chartType) {
+  public static Image takeScreenshot(String url, String browserType, String chartType) {
 
     File screenshotFile;
+    String filePath = SNAP_FILES + File.separator + SNAP + HYPHEN + chartType + PNG_WITH_EXTENSION;
     WebDriver driver = WebDriverConfig.getInstance(browserType);
     try {
       driver.get(url);
@@ -39,7 +41,9 @@ public class HeadlessScreenshot {
       screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
       Files.copy(
           screenshotFile.toPath(),
-          Path.of(SNAP_FILES + File.separator + SNAP + HYPHEN + chartType + PNG_WITH_EXTENSION));
+          Path.of(filePath));
+      ImageData imageData = ImageDataFactory.create(filePath);
+      return new Image(imageData);
     } catch (IOException e) {
       throw new IllegalArgumentException("Error while taking screenshot: " + e.getMessage());
     } catch (InterruptedException e) {

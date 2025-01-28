@@ -1,0 +1,31 @@
+headerTitleInputBean:
+  content: "License Volume Statistics Report"
+  textAlignment: "LEFT"  # Valid values: LEFT, CENTER, RIGHT
+  rightMargin: 20.0
+  topMargin: 30.0
+  leftMargin: 20.0
+  backgroundColor: "#000000"  # Hexadecimal color code
+  fontSize: 12
+  verticalAlignment: "TOP"  # Valid values: TOP, MIDDLE, BOTTOM
+  font: "HELVETICA"  # Example of FontType enum
+
+logoInputBean:
+  logoNeeded: true
+  imagePath: "src/main/resources/Archon-Datastore rasterized.png"
+  fitWidth: 60.0
+  fitHeight: 60.0
+  logoWidth: 95.0
+  logoHeight: 35.0
+  logoTextAlignment: "LEFT"  # Valid values: LEFT, CENTER, RIGHT
+  logoVerticalAlignment: "TOP"  # Valid values: TOP, MIDDLE, BOTTOM
+
+headerAdditionalInputBean:
+  sectionTitle: "Section 1"
+  dateFormat: "yyyy-MM-dd HH:mm:ss"
+  pageNumberNeeded: true
+  pageNumberAlignment: "RIGHT"  # Valid values: LEFT, CENTER, RIGHT
+  textColor: "#000000"  # Hexadecimal color code
+  paddingLeft: 10.0
+  paddingTop: 10.0
+  paddingRight: 10.0
+  paddingBottom: 10.0
