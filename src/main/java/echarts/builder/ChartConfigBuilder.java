@@ -1,5 +1,6 @@
 package echarts.builder;
 
+import apache_echarts.beans.chart.ItemStyle;
 import echarts.beans.request.ChartRequest;
 import echarts.beans.yamlbeans.*;
 import lombok.AccessLevel;

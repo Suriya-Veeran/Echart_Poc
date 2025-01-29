@@ -1,4 +1,4 @@
-package echarts.beans.yamlbeans;
+package apache_echarts.beans.chart;
 
 import lombok.*;
 

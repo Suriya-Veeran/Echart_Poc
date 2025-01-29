@@ -1,5 +1,6 @@
 package echarts.beans.yamlbeans;
 
+import apache_echarts.beans.chart.ItemStyle;
 import lombok.*;
 
 @Getter
